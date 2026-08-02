@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import RoomCard from "./components/RoomCard.jsx";
 
 function App() {
   const [name, setName] = useState("");
@@ -58,7 +59,7 @@ function App() {
   const handleDelete = (id) => {
     const findData = bookings.find((booking) => booking.id === id);
     const updatedData = bookings.filter((booking) => booking.id !== id);
-    
+
     setDeletedBooking(findData);
     setTimeout(() => {
       setDeletedBooking(null);
@@ -75,33 +76,22 @@ function App() {
   return (
     <div className="mx-auto shrink-0 p-6 flex flex-col items-center bg-amber-100">
       <h1 className="font-bold text-lg text-center">HAVENORA</h1>
-      <p className="font-semibold text-center">Your Haven of Timeless Comfort</p>
+      <p className="font-semibold text-center">
+        Your Haven of Timeless Comfort
+      </p>
 
       <h2 className="text-center">Our Rooms:</h2>
-       
+
       <div className="flex gap-2">
-      {rooms.map((room, index) => (
-        <div 
-        key={room.name}
-        className="w-60 rounded-lg border p-4 shadow-md bg-white text-center">
-          <h3>{room.name}</h3>
-          <p>₹{room.price}</p>
-          <button
-            type="button"
-            onClick={() => setSelectedRoom(room.name)}
-            className={`px-4 py-2 cursor-pointer rounded transition-all duration-200
-        ${
-          selectedRoom === room.name
-            ? "bg-green-500 text-white border-green-700 scale-105"
-            : "bg-white text-black border-gray-400 hover:bg-gray-100"
-        }
-          `}
-          >
-            {selectedRoom === room.name ? "SELECTED!" : "SELECT ROOM"}
-          </button>
-        </div>
-      ))}
-      </div> 
+        {rooms.map((room, index) => (
+          <RoomCard
+            name={room.name}
+            price={room.price}
+            selectedRoom={selectedRoom}
+            setSelectedRoom={setSelectedRoom}
+          />
+        ))}
+      </div>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -139,7 +129,7 @@ function App() {
         )}
         <h2 className="text-lg font-semibold mb-2">All Bookings:</h2>
         {bookings.length === 0 ? (
-          <p>No Bookings found</p>
+          <p>No Bookings found!</p>
         ) : (
           bookings.map((booking) => (
             <div key={booking.id}>
