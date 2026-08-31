@@ -1,10 +1,11 @@
 import RoomCard from "./RoomCard";
 
-function RoomList({ name, price, selectedRoom, setSelectedRoom }) {
+function RoomList({ rooms, selectedRoom, setSelectedRoom }) {
   return (
     <div>
-      {rooms.map((room, index) => (
+      {rooms.map((room) => (
         <RoomCard
+          key={room.name}
           name={room.name}
           price={room.price}
           selectedRoom={selectedRoom}

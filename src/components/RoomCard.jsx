@@ -6,7 +6,6 @@ function RoomCard({
 }) {
   return (
     <div
-      key={name}
       className="w-60 rounded-lg border p-4 shadow-md bg-white text-center"
     >
       <h3>{name}</h3>

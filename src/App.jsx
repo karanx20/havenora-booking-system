@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import RoomCard from "./components/RoomCard.jsx";
+import RoomList from "./components/RoomList.jsx";
 
 function App() {
   const [name, setName] = useState("");
@@ -77,16 +77,15 @@ function App() {
     <div className="mx-auto shrink-0 p-6 flex flex-col items-center bg-amber-100">
       <h1 className="font-bold text-lg text-center">HAVENORA</h1>
       <p className="font-semibold text-center">
-        Your Haven of Timeless Comfort
+        Your Heaven of Timeless Comfort
       </p>
 
       <h2 className="text-center">Our Rooms:</h2>
 
       <div className="flex gap-2">
-        {rooms.map((room, index) => (
-          <RoomCard
-            name={room.name}
-            price={room.price}
+        {rooms.map((room) => (
+          <RoomList
+            rooms={rooms}
             selectedRoom={selectedRoom}
             setSelectedRoom={setSelectedRoom}
           />
